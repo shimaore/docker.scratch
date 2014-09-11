@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if docker inspect shimaore/scratch > /dev/null; then
+if docker inspect shimaore/scratch >/dev/null 2>/dev/null; then
   cat <<'EOF'
 There is already a scratch image; use
   docker rmi shimaore/scratch
@@ -9,5 +9,5 @@ EOF
 else
   # scratch.tar is a tar file containing
   #   drwxr-xr-x root/root         0 2014-09-11 19:51 ./
-  docker import - shimaore/scratch < scratch.tar
+  < scratch.tar  docker import - shimaore/scratch
 fi
