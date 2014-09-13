@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 if docker inspect shimaore/scratch >/dev/null 2>/dev/null; then
   cat <<'EOF'
@@ -11,3 +12,6 @@ else
   #   drwxr-xr-x root/root         0 2014-09-11 19:51 ./
   < scratch.tar  docker import - shimaore/scratch
 fi
+
+echo Tests
+for test in test/*; do "$test"; done
